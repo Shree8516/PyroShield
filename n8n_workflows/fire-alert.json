@@ -1,0 +1,114 @@
+{
+  "name": "fire-alert",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fire-alert",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8ae77da8-b596-4073-b3c0-149ba5db8fab",
+      "name": "Webhook",
+      "webhookId": "34d45832-0603-4d8d-8289-768d76637e04"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "054637e5-2bd1-462b-a209-5eb1dd74baee",
+              "leftValue": "={{ $json.body.label }}",
+              "rightValue": "fire",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        0
+      ],
+      "id": "ef5659b1-88c9-4501-9e1b-071c3d118ef5",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "from": "=+12674599188",
+        "to": "+917200722984",
+        "message": "=Fire Alert 🔥\nLat: {{ $json.latitude }} ,\nLon: {{ $json.longitude }}\nConfidence: {{ $json.confidence }} %",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        464,
+        -96
+      ],
+      "id": "16011fc5-6182-4af9-af92-c669dfd12fef",
+      "name": "Send an SMS/MMS/WhatsApp message",
+      "retryOnFail": true,
+      "credentials": {
+        "twilioApi": {
+          "id": "AubPWmytBDOYtjZu",
+          "name": "Twilio account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send an SMS/MMS/WhatsApp message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1a189303-c183-4d2f-8600-6952698912a1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1e113e398c9b42a4e861535b4e550efaa3f0dd4ea67c5e11a55cb438be98f599"
+  },
+  "id": "Dc2eJ99oXI8ncEQQ",
+  "tags": []
+}
