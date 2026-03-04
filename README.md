@@ -5,6 +5,12 @@
 
 <p id="description">PyroShield is an AI-powered wildfire detection system that analyzes aerial or satellite images using deep learning and triggers automated alerts to enable faster emergency response.</p>
 
+## 🛠 Tech Stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,tensorflow,fastapi,html,css,js,docker" />
+</p>
+
 <h2>🛠️ Installation Steps:</h2>
 
 <p>1. Clone Repository</p>
